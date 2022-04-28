@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on GG&#39;s blog</title>
+    <link>https://ggshihaoren.github.io/posts/</link>
+    <description>Recent content in Posts on GG&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 28 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://ggshihaoren.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hello World!</title>
+      <link>https://ggshihaoren.github.io/posts/helloworld/</link>
+      <pubDate>Thu, 28 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ggshihaoren.github.io/posts/helloworld/</guid>
+      <description>Welcome To My First Page! 作为自己的第一篇博客，纵有千言万语想要表述，但是却受限于自己的语言功底而半天敲不出什么话&amp;hellip;
+那就如同最开始接触代码一样，从 Hello World开始吧！</description>
+    </item>
+    
+  </channel>
+</rss>
