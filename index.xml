@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GG&#39;s blog</title>
+    <link>https://ggshihaoren.github.io/</link>
+    <description>Recent content on GG&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 28 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://ggshihaoren.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hello World!</title>
+      <link>https://ggshihaoren.github.io/posts/helloworld/</link>
+      <pubDate>Thu, 28 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ggshihaoren.github.io/posts/helloworld/</guid>
+      <description>Welcome To My First Page! 作为自己的第一篇博客，纵有千言万语想要表述，但是却受限于自己的语言功底而半天敲不出什么话&amp;hellip;
+那就如同最开始接触代码一样，从 Hello World开始吧！</description>
+    </item>
+    
+    <item>
+      <title>About Hugo</title>
+      <link>https://ggshihaoren.github.io/about/</link>
+      <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://ggshihaoren.github.io/about/</guid>
+      <description>Hugo is a static site engine written in Go.
+It makes use of a variety of open source projects including:
+ Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub.</description>
+    </item>
+    
+  </channel>
+</rss>
