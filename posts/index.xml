@@ -6,15 +6,16 @@
     <description>Recent content in Posts on GG&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 28 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://ggshihaoren.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 28 Apr 2022 20:02:25 +0800</lastBuildDate><atom:link href="https://ggshihaoren.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hello World!</title>
       <link>https://ggshihaoren.github.io/posts/helloworld/</link>
-      <pubDate>Thu, 28 Apr 2022 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 28 Apr 2022 20:02:25 +0800</pubDate>
       
       <guid>https://ggshihaoren.github.io/posts/helloworld/</guid>
-      <description>Welcome To My First Page! 作为自己的第一篇博客，纵有千言万语想要表述，但是却受限于自己的语言功底而半天敲不出什么话&amp;hellip;
-那就如同最开始接触代码一样，从 Hello World开始吧！</description>
+      <description>Welcome To My First Page!  作为自己的第一篇博客，纵有千言万语想要表述，但是却受限于自己的语言功底而半天敲不出什么话&amp;hellip;
+那就如同最开始接触代码一样，从 Hello World开始吧！
+以后会经常更新一些新学的有趣的知识，感兴趣的小伙伴可以一起互相学习^-^</description>
     </item>
     
   </channel>
