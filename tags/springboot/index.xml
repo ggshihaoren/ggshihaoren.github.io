@@ -8,20 +8,19 @@
     <language>en-us</language>
     <lastBuildDate>Thu, 05 May 2022 14:51:48 +0800</lastBuildDate><atom:link href="https://ggshihaoren.github.io/tags/springboot/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>初学SpringBoot</title>
+      <title>初学 SpringBoot</title>
       <link>https://ggshihaoren.github.io/posts/%E5%88%9D%E5%AD%A6springboot/</link>
       <pubDate>Thu, 05 May 2022 14:51:48 +0800</pubDate>
       
       <guid>https://ggshihaoren.github.io/posts/%E5%88%9D%E5%AD%A6springboot/</guid>
-      <description>从后端零基础开始 由于本学期J2EE课程作业需要，我们小组需要前后端分离去学习不同的东西。前端关于HTML,CSS,JSP的内容已经有些许了解了，但是后端部分的知识却是一点都不知道。出于想学习新东西的心态，我便选择开始学习后端部分的知识。
-可能是觉得老师教的东西有些许过时了，我们的组长便决定不完全按照老师所教的东西来，而是选择了SpringBoot 和 MyBatis 作为我们的后端选型，数据库也不是MYSQL，而是 MariaDB(我们组长到底是怎么知道这么多东西的真的好厉害必须狠狠夸一波)。
-于是便有了后面一些关于SpringBoot的简单学习。
-SpringBoot是什么？ 要弄懂SpringBoot是什么或许得先了解Spring应用开发的相关知识。简单来说，它是一种为了解决企业应用程序开发复杂性而创建的开源的框架。框架的主要优势之一就是其分层架构，分层架构允许我们使用哪一种组件，同时为J2EE应用程序开发提供了集成的框架。
-而SpringBoot呢？它也是一种框架。它被设计出来的目的便是为了简化Spring应用的创建，运行，调试，部署等功能。它打包了许多本来需要我们自己去配置的功能，按照人们的使用习惯解决了依赖问题，这样便可以降低开发人员对于框架的关注点，可以把更多的精力放在自己的业务代码上。总的来说，其目的就是为了Java Web的开发进行&amp;quot;简化&amp;quot;和&amp;quot;加快速度&amp;quot;，简化开发过程中引入或启动相关Spring功能的配置。使用SpringBoot我们就可以不用或者只需很少的Spring配置就可以让企业项快速运行起来。
-简单尝试 打开IDEA，Generator选择的是Spring Initializr，取名默认为demo，再选择了Gradle作为此次的项目结构便开始了我的第一次尝试(网上大部分的教程好像都是使用了MAVEN，但是据说是使用Gradle的人越来越多了，便试着使用了它)。这里要注意在第二步中需要勾选Spring Web才能顺利进行这个框架的构建~
-之后便是愉快的贴代码环节了。通过src/main/java/com/example/demo路径打开已生成的DemoApplication.java文件，并将下面这段代码直接贴上去：
-package com.example.demo; import org.springframework.boot.SpringApplication; import org.springframework.boot.autoconfigure.SpringBootApplication; import org.springframework.web.bind.annotation.GetMapping; import org.springframework.web.bind.annotation.RequestParam; import org.springframework.web.bind.annotation.RestController; @SpringBootApplication @RestController public class DemoApplication { public static void main(String[] args) { SpringApplication.run(DemoApplication.class, args); } @GetMapping(&amp;#34;/hello&amp;#34;) public String hello(@RequestParam(value = &amp;#34;name&amp;#34;, defaultValue = &amp;#34;World&amp;#34;) String name) { return String.format(&amp;#34;Hello %s!&amp;#34;, name); } } 在代码中，自定义的hello()函数表示其中被定义的内容会以字符串的形式被投射在web上。 以@符号开头的我们将其称为注释，它会告诉Spring框架这里面隐含了一大段代码，他们也分别有各自的作用：
- @RestController：表示接下来的代码的内容将会被投放到web上。 @GetMapping(&amp;quot;/hello&amp;quot;)：将我们定义的hello()函数发送到我们之后将访问的端口的页面上。 @RequestParam：将Sting的值设为name，默认值为World。  最后通过main函数执行程序之后我们可以访问本机中的http://localhost:8080/hello地址，便可以看到我们预期之中的结果了！</description>
+      <description>从后端零基础开始 由于本学期 J2EE 课程作业需要，我们小组需要前后端分离去学习不同的东西。前端关于 HTML,CSS,JSP 的内容已经有些许了解了，但是后端部分的知识却是一点都不知道。出于想学习新东西的心态，我便选择开始学习后端部分的知识。
+可能是觉得老师教的东西有些许过时了，我们的组长便决定不完全按照老师所教的东西来，而是选择了 SpringBoot 和 MyBatis 作为我们的后端选型，数据库也不是 MYSQL，而是 MariaDB （我们组长到底是怎么知道这么多东西的真的好厉害必须狠狠夸一波）。
+于是便有了后面一些关于 SpringBoot 的简单学习。
+SpringBoot 是什么？ 要弄懂 SpringBoot 是什么或许得先了解 Spring 应用开发的相关知识。简单来说，它是一种为了解决企业应用程序开发复杂性而创建的开源的框架。框架的主要优势之一就是其分层架构，分层架构允许我们使用哪一种组件，同时为 J2EE 应用程序开发提供了集成的框架。
+而 SpringBoot 呢？它也是一种框架。它被设计出来的目的便是为了简化 Spring 应用的创建，运行，调试，部署等功能。它打包了许多本来需要我们自己去配置的功能，按照人们的使用习惯解决了依赖问题，这样便可以降低开发人员对于框架的关注点，可以把更多的精力放在自己的业务代码上。总的来说，其目的就是为了 Java Web 的开发进行&amp;quot;简化&amp;quot;和&amp;quot;加快速度&amp;quot;，简化开发过程中引入或启动相关 Spring 功能的配置。使用 SpringBoot 我们就可以不用或者只需很少的 Spring 配置就可以让企业项快速运行起来。
+简单尝试 打开 IDEA，Generator 选择的是 Spring Initializr，取名默认为 demo，再选择了 Gradle 作为此次的项目结构便开始了我的第一次尝试（网上大部分的教程好像都是使用了 MAVEN，但是据说是使用 Gradle 的人越来越多了，便试着使用了它）。这里要注意在第二步中需要勾选 Spring Web 才能顺利进行这个框架的构建~
+之后便是愉快的贴代码环节了。通过 src/main/java/com/example/demo 路径打开已生成的 DemoApplication.java 文件，并将下面这段代码直接贴上去：
+package com.example.demo; import org.springframework.boot.SpringApplication; import org.springframework.boot.autoconfigure.SpringBootApplication; import org.springframework.web.bind.annotation.GetMapping; import org.springframework.web.bind.annotation.RequestParam; import org.</description>
     </item>
     
   </channel>
