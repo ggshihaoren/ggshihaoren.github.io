@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>HTTP on GG&#39;s blog</title>
+    <link>https://ggshihaoren.github.io/tags/http/</link>
+    <description>Recent content in HTTP on GG&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 05 May 2022 14:51:48 +0800</lastBuildDate><atom:link href="https://ggshihaoren.github.io/tags/http/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>初学 SpringBoot</title>
+      <link>https://ggshihaoren.github.io/posts/%E5%88%9D%E5%AD%A6springboot/</link>
+      <pubDate>Thu, 05 May 2022 14:51:48 +0800</pubDate>
+      
+      <guid>https://ggshihaoren.github.io/posts/%E5%88%9D%E5%AD%A6springboot/</guid>
+      <description>从后端零基础开始 由于本学期 J2EE 课程作业需要，我们小组需要前后端分离去学习不同的东西。前端关于 HTML,CSS,JSP 的内容已经有些许了解了，但是后端部分的知识却是一点都不知道。出于想学习新东西的心态，我便选择开始学习后端部分的知识。
+可能是觉得老师教的东西有些许过时了，我们的组长便决定不完全按照老师所教的东西来，而是选择了 SpringBoot 和 MyBatis 作为我们的后端选型，数据库也不是 MYSQL，而是 MariaDB （我们组长到底是怎么知道这么多东西的真的好厉害必须狠狠夸一波）。
+于是便有了后面一些关于 SpringBoot 的简单学习。
+SpringBoot 是什么？ 要弄懂 SpringBoot 是什么或许得先了解 Spring 应用开发的相关知识。简单来说，它是一种为了解决企业应用程序开发复杂性而创建的开源的框架。框架的主要优势之一就是其分层架构，分层架构允许我们使用哪一种组件，同时为 J2EE 应用程序开发提供了集成的框架。
+而 SpringBoot 呢？它也是一种框架。它被设计出来的目的便是为了简化 Spring 应用的创建，运行，调试，部署等功能。它打包了许多本来需要我们自己去配置的功能，按照人们的使用习惯解决了依赖问题，这样便可以降低开发人员对于框架的关注点，可以把更多的精力放在自己的业务代码上。总的来说，其目的就是为了 Java Web 的开发进行&amp;quot;简化&amp;quot;和&amp;quot;加快速度&amp;quot;，简化开发过程中引入或启动相关 Spring 功能的配置。使用 SpringBoot 我们就可以不用或者只需很少的 Spring 配置就可以让企业项快速运行起来。
+简单尝试 打开 IDEA，Generator 选择的是 Spring Initializr，取名默认为 demo，再选择了 Gradle 作为此次的项目结构便开始了我的第一次尝试（网上大部分的教程好像都是使用了 MAVEN，但是据说是使用 Gradle 的人越来越多了，便试着使用了它）。这里要注意在第二步中需要勾选 Spring Web 才能顺利进行这个框架的构建~
+之后便是愉快的贴代码环节了。通过 src/main/java/com/example/demo 路径打开已生成的 DemoApplication.java 文件，并将下面这段代码直接贴上去：
+package com.example.demo; import org.springframework.boot.SpringApplication; import org.springframework.boot.autoconfigure.SpringBootApplication; import org.springframework.web.bind.annotation.GetMapping; import org.springframework.web.bind.annotation.RequestParam; import org.</description>
+    </item>
+    
+  </channel>
+</rss>
