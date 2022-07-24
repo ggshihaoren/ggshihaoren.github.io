@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  
+  <title>莫比乌斯反演 - GG&#39;s blog</title>
+
+  
+  
+  <meta name="description" content="用途 抱着好奇的态度学习了这个数论板块中较为重要的内容。简单来说对于一些较难直接求出值的函数 $f(n)$ ,如若可以求出它的倍数的和或者约数的和 $g(n)$ ,那么我们就可以直接通过莫比乌斯反演进行运算从而求得 $f(n)$ 的值。
+前置芝士 在学习这一部分之前，首先需要学习数论分块与狄利克雷卷积的相关知识。
+一、数论分块 对于形如$\sum_{i=1}^nf(i)g(\lfloor \frac{n}{i} \rfloor)$的和式，如果我们可以做到O(1)内计算$f(r)-f(l)$时，利用数论分块就能以$O(\sqrt N)$的复杂度算出上述的式子。
+结论 对于对于常数$1\le l \le r \le n$，要使得$\lfloor \frac{n}{l} \rfloor = \lfloor \frac{n}{r} \rfloor,r_{max}=\lfloor \frac{n}{\lfloor \frac{n}{l} \rfloor} \rfloor$
+证明 设$k=\lfloor \frac{n}{l} \rfloor$，那么 $$k \le \frac{n}{l} \Rightarrow \lfloor \frac{n}{k} \rfloor\geq\lfloor \frac{n}{\frac{n}{l}} \rfloor=\lfloor l \rfloor=l,则r _{max}=l _{max}=\lfloor \frac{n}{\lfloor \frac{n}{l} \rfloor} \rfloor$$
+证毕
+由于$\lfloor \frac{n}{l} \rfloor$的值形成了块状分布，因此要求上面的和式的话，我们可以将一整个1~N的区间划分成多个l~r的连续区间，同样的值聚集在同一个块中，这样的话就可以直接计算某一块中的大小的和，从而大大降低时间复杂度。下面以计算$\sum_{i=1}^n\lfloor \frac{n}{i} \rfloor$为例实现代码。
+int l=1,r; int sum=0; while(l&lt;=n){ r=(n/(n/l)); //由结论可得的r的右端点 sum&#43;=(r-l&#43;1)*(n/l); //一整块的值 l=r&#43;1; } return sum; 二、狄利克雷卷积 所谓狄利克雷卷积，也称卷积，是定义在数论函数间的一种二元运算，可被定义为： $$ (f*g)(n):=\sum _{xy=n}f(x)g(y) $$" />
+  <meta name="author" content="" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="https://ggshihaoren.github.io/app.min.css" />
+
+  
+  <link rel="preload stylesheet" as="style" href="https://ggshihaoren.github.io/an-old-hope.min.css" />
+  <script
+    defer
+    src="https://ggshihaoren.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+  <link rel="preload" as="image" href="https://ggshihaoren.github.io/theme.png" />
+
+  
+
+  
+  <link rel="icon" href="https://ggshihaoren.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://ggshihaoren.github.io/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.101.0" />
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="莫比乌斯反演" />
+<meta property="og:description" content="用途 抱着好奇的态度学习了这个数论板块中较为重要的内容。简单来说对于一些较难直接求出值的函数 $f(n)$ ,如若可以求出它的倍数的和或者约数的和 $g(n)$ ,那么我们就可以直接通过莫比乌斯反演进行运算从而求得 $f(n)$ 的值。
+前置芝士 在学习这一部分之前，首先需要学习数论分块与狄利克雷卷积的相关知识。
+一、数论分块 对于形如$\sum_{i=1}^nf(i)g(\lfloor \frac{n}{i} \rfloor)$的和式，如果我们可以做到O(1)内计算$f(r)-f(l)$时，利用数论分块就能以$O(\sqrt N)$的复杂度算出上述的式子。
+结论 对于对于常数$1\le l \le r \le n$，要使得$\lfloor \frac{n}{l} \rfloor = \lfloor \frac{n}{r} \rfloor,r_{max}=\lfloor \frac{n}{\lfloor \frac{n}{l} \rfloor} \rfloor$
+证明 设$k=\lfloor \frac{n}{l} \rfloor$，那么 $$k \le \frac{n}{l} \Rightarrow \lfloor \frac{n}{k} \rfloor\geq\lfloor \frac{n}{\frac{n}{l}} \rfloor=\lfloor l \rfloor=l,则r _{max}=l _{max}=\lfloor \frac{n}{\lfloor \frac{n}{l} \rfloor} \rfloor$$
+证毕
+由于$\lfloor \frac{n}{l} \rfloor$的值形成了块状分布，因此要求上面的和式的话，我们可以将一整个1~N的区间划分成多个l~r的连续区间，同样的值聚集在同一个块中，这样的话就可以直接计算某一块中的大小的和，从而大大降低时间复杂度。下面以计算$\sum_{i=1}^n\lfloor \frac{n}{i} \rfloor$为例实现代码。
+int l=1,r; int sum=0; while(l&lt;=n){ r=(n/(n/l)); //由结论可得的r的右端点 sum&#43;=(r-l&#43;1)*(n/l); //一整块的值 l=r&#43;1; } return sum; 二、狄利克雷卷积 所谓狄利克雷卷积，也称卷积，是定义在数论函数间的一种二元运算，可被定义为： $$ (f*g)(n):=\sum _{xy=n}f(x)g(y) $$" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ggshihaoren.github.io/posts/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-21T17:09:58+08:00" />
+<meta property="article:modified_time" content="2022-07-21T17:09:58+08:00" />
+
+
+  
+  <meta itemprop="name" content="莫比乌斯反演">
+<meta itemprop="description" content="用途 抱着好奇的态度学习了这个数论板块中较为重要的内容。简单来说对于一些较难直接求出值的函数 $f(n)$ ,如若可以求出它的倍数的和或者约数的和 $g(n)$ ,那么我们就可以直接通过莫比乌斯反演进行运算从而求得 $f(n)$ 的值。
+前置芝士 在学习这一部分之前，首先需要学习数论分块与狄利克雷卷积的相关知识。
+一、数论分块 对于形如$\sum_{i=1}^nf(i)g(\lfloor \frac{n}{i} \rfloor)$的和式，如果我们可以做到O(1)内计算$f(r)-f(l)$时，利用数论分块就能以$O(\sqrt N)$的复杂度算出上述的式子。
+结论 对于对于常数$1\le l \le r \le n$，要使得$\lfloor \frac{n}{l} \rfloor = \lfloor \frac{n}{r} \rfloor,r_{max}=\lfloor \frac{n}{\lfloor \frac{n}{l} \rfloor} \rfloor$
+证明 设$k=\lfloor \frac{n}{l} \rfloor$，那么 $$k \le \frac{n}{l} \Rightarrow \lfloor \frac{n}{k} \rfloor\geq\lfloor \frac{n}{\frac{n}{l}} \rfloor=\lfloor l \rfloor=l,则r _{max}=l _{max}=\lfloor \frac{n}{\lfloor \frac{n}{l} \rfloor} \rfloor$$
+证毕
+由于$\lfloor \frac{n}{l} \rfloor$的值形成了块状分布，因此要求上面的和式的话，我们可以将一整个1~N的区间划分成多个l~r的连续区间，同样的值聚集在同一个块中，这样的话就可以直接计算某一块中的大小的和，从而大大降低时间复杂度。下面以计算$\sum_{i=1}^n\lfloor \frac{n}{i} \rfloor$为例实现代码。
+int l=1,r; int sum=0; while(l&lt;=n){ r=(n/(n/l)); //由结论可得的r的右端点 sum&#43;=(r-l&#43;1)*(n/l); //一整块的值 l=r&#43;1; } return sum; 二、狄利克雷卷积 所谓狄利克雷卷积，也称卷积，是定义在数论函数间的一种二元运算，可被定义为： $$ (f*g)(n):=\sum _{xy=n}f(x)g(y) $$"><meta itemprop="datePublished" content="2022-07-21T17:09:58+08:00" />
+<meta itemprop="dateModified" content="2022-07-21T17:09:58+08:00" />
+<meta itemprop="wordCount" content="408">
+<meta itemprop="keywords" content="莫比乌斯函数,数论分块,狄利克雷卷积,Latex," />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="莫比乌斯反演"/>
+<meta name="twitter:description" content="用途 抱着好奇的态度学习了这个数论板块中较为重要的内容。简单来说对于一些较难直接求出值的函数 $f(n)$ ,如若可以求出它的倍数的和或者约数的和 $g(n)$ ,那么我们就可以直接通过莫比乌斯反演进行运算从而求得 $f(n)$ 的值。
+前置芝士 在学习这一部分之前，首先需要学习数论分块与狄利克雷卷积的相关知识。
+一、数论分块 对于形如$\sum_{i=1}^nf(i)g(\lfloor \frac{n}{i} \rfloor)$的和式，如果我们可以做到O(1)内计算$f(r)-f(l)$时，利用数论分块就能以$O(\sqrt N)$的复杂度算出上述的式子。
+结论 对于对于常数$1\le l \le r \le n$，要使得$\lfloor \frac{n}{l} \rfloor = \lfloor \frac{n}{r} \rfloor,r_{max}=\lfloor \frac{n}{\lfloor \frac{n}{l} \rfloor} \rfloor$
+证明 设$k=\lfloor \frac{n}{l} \rfloor$，那么 $$k \le \frac{n}{l} \Rightarrow \lfloor \frac{n}{k} \rfloor\geq\lfloor \frac{n}{\frac{n}{l}} \rfloor=\lfloor l \rfloor=l,则r _{max}=l _{max}=\lfloor \frac{n}{\lfloor \frac{n}{l} \rfloor} \rfloor$$
+证毕
+由于$\lfloor \frac{n}{l} \rfloor$的值形成了块状分布，因此要求上面的和式的话，我们可以将一整个1~N的区间划分成多个l~r的连续区间，同样的值聚集在同一个块中，这样的话就可以直接计算某一块中的大小的和，从而大大降低时间复杂度。下面以计算$\sum_{i=1}^n\lfloor \frac{n}{i} \rfloor$为例实现代码。
+int l=1,r; int sum=0; while(l&lt;=n){ r=(n/(n/l)); //由结论可得的r的右端点 sum&#43;=(r-l&#43;1)*(n/l); //一整块的值 l=r&#43;1; } return sum; 二、狄利克雷卷积 所谓狄利克雷卷积，也称卷积，是定义在数论函数间的一种二元运算，可被定义为： $$ (f*g)(n):=\sum _{xy=n}f(x)g(y) $$"/>
+
+  
+  
+</head>
+
+
+  <body class="not-ready" data-menu="false">
+    <header class="header">
+  
+  <p class="logo">
+    <a class="site-name" href="https://ggshihaoren.github.io/">GG&#39;s blog</a><a class="btn-dark"></a>
+  </p>
+  
+
+  <script>
+    let bodyClx = document.body.classList;
+    let btnDark = document.querySelector('.btn-dark');
+    let sysDark = window.matchMedia('(prefers-color-scheme: dark)');
+    let darkVal = localStorage.getItem('dark');
+
+    let setDark = (isDark) => {
+      bodyClx[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark ? 'yes' : 'no');
+    };
+
+    setDark(darkVal ? darkVal === 'yes' : sysDark.matches);
+    requestAnimationFrame(() => bodyClx.remove('not-ready'));
+
+    btnDark.addEventListener('click', () => setDark(!bodyClx.contains('dark')));
+    sysDark.addEventListener('change', (event) => setDark(event.matches));
+  </script>
+
+  
+  
+
+  
+</header>
+
+
+    <main class="main">
+
+<article class="post-single">
+  <header class="post-title">
+    <p>
+      
+      <time>Jul 21, 2022</time>
+      
+      
+    </p>
+    <h1>莫比乌斯反演</h1>
+  </header>
+  <section class="post-content"><h2 id="用途">用途</h2>
+<p>抱着好奇的态度学习了这个数论板块中较为重要的内容。简单来说对于一些较难直接求出值的函数 $f(n)$ ,如若可以求出它的倍数的和或者约数的和 $g(n)$ ,那么我们就可以直接通过莫比乌斯反演进行运算从而求得 $f(n)$ 的值。</p>
+<h2 id="前置芝士">前置芝士</h2>
+<p>在学习这一部分之前，首先需要学习<code>数论分块</code>与<code>狄利克雷卷积</code>的相关知识。</p>
+<h3 id="一数论分块">一、数论分块</h3>
+<p>对于形如$\sum_{i=1}^nf(i)g(\lfloor \frac{n}{i} \rfloor)$的和式，如果我们可以做到O(1)内计算$f(r)-f(l)$时，利用<strong>数论分块</strong>就能以$O(\sqrt N)$的复杂度算出上述的式子。</p>
+<h4 id="结论">结论</h4>
+<p>对于对于常数$1\le l \le r \le n$，要使得$\lfloor \frac{n}{l} \rfloor = \lfloor \frac{n}{r} \rfloor,r_{max}=\lfloor \frac{n}{\lfloor \frac{n}{l} \rfloor} \rfloor$</p>
+<h4 id="证明">证明</h4>
+<p>设$k=\lfloor \frac{n}{l} \rfloor$，那么
+$$k \le \frac{n}{l} \Rightarrow \lfloor \frac{n}{k}  \rfloor\geq\lfloor \frac{n}{\frac{n}{l}} \rfloor=\lfloor l \rfloor=l,则r _{max}=l _{max}=\lfloor \frac{n}{\lfloor \frac{n}{l} \rfloor} \rfloor$$</p>
+<p>证毕</p>
+<p>由于$\lfloor \frac{n}{l}  \rfloor$的值形成了块状分布，因此要求上面的和式的话，我们可以将一整个1~N的区间划分成多个l~r的连续区间，同样的值聚集在同一个块中，这样的话就可以直接计算某一块中的大小的和，从而大大降低时间复杂度。下面以计算$\sum_{i=1}^n\lfloor \frac{n}{i} \rfloor$为例实现代码。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> l<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,r;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> sum<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span>(l<span style="color:#f92672">&lt;=</span>n){
+</span></span><span style="display:flex;"><span>    r<span style="color:#f92672">=</span>(n<span style="color:#f92672">/</span>(n<span style="color:#f92672">/</span>l)); <span style="color:#75715e">//由结论可得的r的右端点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    sum<span style="color:#f92672">+=</span>(r<span style="color:#f92672">-</span>l<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">*</span>(n<span style="color:#f92672">/</span>l); <span style="color:#75715e">//一整块的值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    l<span style="color:#f92672">=</span>r<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> sum;
+</span></span></code></pre></div><h3 id="二狄利克雷卷积">二、狄利克雷卷积</h3>
+<p>所谓<strong>狄利克雷卷积</strong>，也称卷积，是定义在数论函数间的一种二元运算，可被定义为：
+$$
+(f*g)(n):=\sum _{xy=n}f(x)g(y)
+$$</p>
+<p>也可等价写作：
+$$
+(f*g)(n):=\sum _{d|n}f(d)g(\frac{n}{d})
+$$</p>
+<p>在莫比乌斯反演之中确实是第二种写法用的更多一点&hellip;</p>
+<h2 id="莫比乌斯函数">莫比乌斯函数</h2>
+<p>接下来就可以介绍本次的主角——莫比乌斯函数了。</p>
+<h3 id="定义">定义</h3>
+<p>设正整数N按照算术基本定理分解质因数成$N=p_1^{c_1}p_2^{c_2}&hellip;p_m^{c_m}$后，定义函数
+$$
+\mu(x)=\begin{cases}  0&amp; \text{ $\exists i \in [1,m],c_i&gt;1$} \\ 1&amp; \text{$m\equiv0(mod\ 2), \forall i \in [1,m],c_i=1$} \\ -1&amp; \text{$m\equiv 1(mod\ 2),\forall i\in[1,m],c_i=1$}\end{cases}
+$$
+并称其为莫比乌斯函数。</p>
+<p>通俗来讲就是说当$N$有多个相同的质因子时，$\mu(N)=0$，当有偶数个不同的质因子时，$\mu(N)=1$，当有奇数个不同的质因子时，$\mu(N)=-1$。</p>
+<h3 id="实现">实现</h3>
+<p>知晓了定义我们就需要考虑它的性质以及实现。前者我们稍后再进行介绍，先来想想如何去实现它。</p>
+<p>首先可以想到，所有的质数质因子只有它本身，因此对质数$p$来说，$\mu(p)=-1$ 是毫无疑问的。而在我们先前所学过的筛法之中，基本都是以质数来筛出合数。因此我们可以考虑先将 $1-N$ 中每个数的莫比乌斯函数都初始化为1，再使用筛法(这里我们使用埃氏筛)，对于筛出来的每一个质数$p$都令 $\mu(p)=-1$，再依次扫描其倍数$x=2p,3p&hellip;\lfloor n/p \rfloor *p$，并检查 $x$ 能否被 $p^2$ 整除，如果能，就说明 $\mu(x)=0$，否则便是合数，每筛出它的一个质因数就使 $\mu(x)=-\mu(x)$即可。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; i<span style="color:#f92672">&lt;=</span>n; i<span style="color:#f92672">++</span>) mobius[i]<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,v[i]<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; <span style="color:#75715e">//1没有质因数，因此mobius[1]=1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>; i<span style="color:#f92672">&lt;=</span>n; i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(v[i]) <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>i; j<span style="color:#f92672">&lt;=</span>n; j<span style="color:#f92672">+=</span>i){
+</span></span><span style="display:flex;"><span>        v[j]<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>((j<span style="color:#f92672">/</span>i)<span style="color:#f92672">%</span>i<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>) mobius[j]<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span> mobius[j]<span style="color:#f92672">*=-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="性质">性质</h3>
+<p>接下来介绍一个它非常重要的性质：</p>
+<p>$$
+\sum_{d|n}\mu(d)=\begin{cases} 1&amp; \text{$n=1$} \\ 0&amp; \text{$n\neq 1$} \end{cases}
+$$</p>
+<p>即$\sum_{d|n}\mu(d)=\epsilon(n),\mu*1=\epsilon $</p>
+<p>这个性质要证明起来也比较简单。</p>
+<p>首先，当 $n=1$时 这个式子的值就是 $\mu(1)=1$ ，显然成立。</p>
+<p>其次，当 $n\neq 1$ 时，$n=p_1^{c_1}p_2^{c_2}&hellip;p_k^{c_k}$，而对于 $\mu(d)=0$ 的值对结果没影响，因此我们只需要讨论每种质因子只有一个，也就是所有 $d=p_1p_2&hellip;p_k$ 使得 $\mu(d)\neq 0$ 的值对上述和式带来的影响。我们设有r个质因子的数的个数一共为 $C_k^r$，当 $r$ 为偶数，$\mu(d)=1$ ，否则 $\mu(d)=-1$。从而可得：
+$$
+\sum_{d|n}\mu(d)=C_k^0+c_k^1+C_k^2+&hellip;+C_k^k=\sum_{i=0}^k (-1)^k C_k^i
+$$
+接下来只需要证明等式右边的值等于0就大功告成了。而右边的式子我们完全可以化为我们非常熟悉的$(x+y)^k=\sum_{i=0}^k C_k^i x^k y^{k-i}$的二项式形式，代入 $x=-1,y=1$ ，就可以得到我们想要的值了，同样也证明了上述和式在 $n\neq 0$ 情况下值为0，证毕。</p>
+<p>对照上面的狄利克雷卷积的形式，我们同样可以发现该和式本身也可以写成将其与常数函数1进行卷积的形式，也就等于单位函数 $\epsilon$。这个性质对于稍后我们证明莫比乌斯反演非常有用。</p>
+<h2 id="莫比乌斯反演与莫比乌斯变换">莫比乌斯反演与莫比乌斯变换</h2>
+<p>设 $f(n),g(n)$ 为两个数论函数，如果满足
+$$
+f(n)=\sum_{k|n}g(k)
+$$
+那么就有
+$$
+g(n)=\sum_{k|n}\mu(k)f(\frac{n}{k})
+$$</p>
+<p>并称在该种形式下 $f(n)$ 为 $g(n)$ 的莫比乌斯变换，$g(n)$ 为 $f(n)$ 的莫比乌斯反演。</p>
+<p>上述为约数形式，同样还有另一种倍数形式：</p>
+<p>$$
+如果f(n)=\sum_{n|k}g(k)，那么g(n)=\sum_{n|k}\mu(\frac{k}{n})f(k)
+$$</p>
+<p>说实话，数论基础并不好的我看到这两个式子是挺懵的，完全无法表述它的意思，更不用提如何去证明了。而对于它数论变换的证明方式我依旧是一头雾水，对其中几个地方还是不太明白，如果有人能帮我理清楚我将感激不尽。</p>
+<p>不过使用卷积方式去证明的话还是很好理解的。</p>
+<p>对于$f=g\ast1$ ，证明$g=f\ast\mu$</p>
+<p>$$
+\Leftarrow\Rightarrow f\ast\mu=g\ast1\ast\mu \Rightarrow f\ast\mu=g（其中\mu\ast 1=\epsilon）
+$$</p>
+<p>证毕</p>
+<p>利用之前所讲的莫比乌斯函数与常数函数1的卷积为单位函数的性质就可以清晰简单的将其证明了。数论变换的方式证明两种形式我就不写了，因为确实不太理解&hellip;</p>
+<h3 id="使用">使用</h3>
+<p>最开始我们是说，利用莫比乌斯反演可以解决求原函数难，求其约数或者倍数之和易的问题。接下来我们就直接上一道例题来看看大致是怎么使用的。</p>
+<p>例题链接：<a href="https://www.luogu.com.cn/problem/P3455">P3455 [POI2007]ZAP-Queries</a></p>
+<p>题目实际是让我们求出 $\sum_{i=1}^a\sum_{j=1}^b[gcd(i,j)=d]$ 的值。</p>
+<p>显然也可以将其转化成求 $\sum_{i=1}^{\frac{a}{d}}\sum_{j=1}^{\frac{b}{d}}[gcd(i,j)=1]$ 的值。</p>
+<p>接下来我们用 $a&rsquo;$ 和 $b&rsquo;$ 分别代表 $\frac{a}{d}$ 和 $\frac{b}{d}$ ，并设</p>
+<p>$$
+f(n)=\sum_{i=1}^{a&rsquo;}\sum_{j=1}^{b&rsquo;}[gcd(i,j)=n]
+$$</p>
+<p>显然，$f(1)$ 就是我们要求的答案，但是似乎还是不怎么好求啊。暴力直接算的话明显会超时。</p>
+<p>那怎么算呢？好像虽然 $f(n)$ 比较难求，但是n的倍数的个数和，也就是 $F(n)=\sum_{n|k}^{min(a&rsquo;,b&rsquo;)}f(k)$ 是比较好算的啊。满足 $i\le a&rsquo; ，j\le b&rsquo; 且n\ |\ gcd(i,j)$ 的二元组个数可不就是 $i,j$ 都为 $n$ 的倍数。1-a&rsquo;中n的倍数有 $\lfloor a/n \rfloor$ 个，1-b&rsquo;中n的倍数有 $\lfloor b/n \rfloor$ 个，因此可得$F(n)=\lfloor \frac{a}{k}\rfloor\lfloor \frac{b}{k} \rfloor$。</p>
+<p>所以我们就可以直接使用莫比乌斯反演得到：
+$$
+f(n)=\sum_{n|k}^{min(a&rsquo;,b&rsquo;)}\mu(\frac{k}{n})F(k)=\sum_{n|k}^{min(a&rsquo;,b&rsquo;)}\mu(\frac{k}{n})\lfloor \frac{a}{k}\rfloor\lfloor \frac{b}{k} \rfloor
+$$</p>
+<p>代入 $n=1$ 即可得 $f(1)=\sum_{k=1}^{min(a&rsquo;,b&rsquo;)}\mu(k)\lfloor \frac{a}{k}\rfloor\lfloor \frac{b}{k} \rfloor$。我们只需要预处理出 $\mu(k)$ 的前缀和就可以很快的算出前面一部分的值，后面的一部分可以联想到我们上面所讲的数论分块的内容，将所有值分块处理，减少时间复杂度，就能完美解决这道题了。下面是整体的代码实现，</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define int long long
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define endl &#39;\n&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> N<span style="color:#f92672">=</span><span style="color:#ae81ff">2e5</span><span style="color:#f92672">+</span><span style="color:#ae81ff">7</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> n,m,mobius[N];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> vis[N];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> sum[N];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">init</span>() <span style="color:#75715e">//计算莫比乌斯函数并处理前缀和
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; i<span style="color:#f92672">&lt;</span>N; i<span style="color:#f92672">++</span>) vis[i]<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>,mobius[i]<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>; i<span style="color:#f92672">&lt;</span>N; i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(vis[i]) <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>        mobius[i]<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>i; j<span style="color:#f92672">&lt;</span>N; j<span style="color:#f92672">+=</span>i){
+</span></span><span style="display:flex;"><span>            vis[j]<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>((j<span style="color:#f92672">/</span>i)<span style="color:#f92672">%</span>i<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>) mobius[j]<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span> mobius[j]<span style="color:#f92672">*=-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; i<span style="color:#f92672">&lt;</span>N; i<span style="color:#f92672">++</span>) sum[i]<span style="color:#f92672">=</span>sum[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span>mobius[i];
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">signed</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    cin <span style="color:#f92672">&gt;&gt;</span> m;
+</span></span><span style="display:flex;"><span>    init();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span>(m<span style="color:#f92672">--</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> a,b,k;
+</span></span><span style="display:flex;"><span>        cin <span style="color:#f92672">&gt;&gt;</span> a <span style="color:#f92672">&gt;&gt;</span> b <span style="color:#f92672">&gt;&gt;</span> k;
+</span></span><span style="display:flex;"><span>        a<span style="color:#f92672">/=</span>k,b<span style="color:#f92672">/=</span>k;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> l<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,r;
+</span></span><span style="display:flex;"><span>        n<span style="color:#f92672">=</span>min(a,b);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> ans<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span>(l<span style="color:#f92672">&lt;=</span>n){
+</span></span><span style="display:flex;"><span>            r<span style="color:#f92672">=</span>min(n,min(a<span style="color:#f92672">/</span>(a<span style="color:#f92672">/</span>l),b<span style="color:#f92672">/</span>(b<span style="color:#f92672">/</span>l)));
+</span></span><span style="display:flex;"><span>            ans<span style="color:#f92672">+=</span>(sum[r]<span style="color:#f92672">-</span>sum[l<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])<span style="color:#f92672">*</span>(a<span style="color:#f92672">/</span>l)<span style="color:#f92672">*</span>(b<span style="color:#f92672">/</span>l);
+</span></span><span style="display:flex;"><span>            r<span style="color:#f92672">=</span>l<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        cout <span style="color:#f92672">&lt;&lt;</span> ans <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>其实这道题利用容斥原理加上莫比乌斯函数的性质也可以顺利解决。将式子推到只需要满足在 $1-a&rsquo;,1-b&rsquo;$ 中 $gcd(i,j)=1$ 后，算出一共有 $a\ast b$ 种情况，根据容斥原理还需要减去是2，3，5&hellip;等数的倍数的情况，但多减了同时是2,3的倍数的情况，还需要加回来，以此类推， 最终发现每个数的系数就是莫比乌斯函数，也可以推出上面的式子。代码实现是一样的。</p>
+<h2 id="小结">小结</h2>
+<p>莫比乌斯反演到这里差不多就介绍完了，对我这种数学底子比较薄弱的人说实话并不是很友好，因为很多地方对我来说着实很难理解，以至于花了可能比其他人还要多的时间，却还有一些地方依旧没学懂，给我一些较难的式子我也不一定能推出来，也第一次出现了学习学到出现反胃感等诸多情况&hellip;但是好处当然也是毋庸置疑的。在写这篇博客的时候同时也在学一些基础的数学知识，发现似乎更好理解了，这种数学思维可能还需要慢慢来培养吧。</p>
+<p>另外写这篇博客的所有数学公式都是使用Latex语言手打的，前期为了给博客加上Latex渲染也是费了不小的功夫(终究是太菜了连这个都不会)。不过所幸最终还是将其全部完成了，没有用在线转换工具也算是为了了解了更多的相关知识吧，确实也感觉收获不小。不过下一篇博客应该不会是数学了因为手打数学公式是真的不容易啊&hellip;</p>
+</section>
+
+  
+  
+  <footer class="post-tags">
+     
+    <a href="https://ggshihaoren.github.io/tags/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%87%BD%E6%95%B0">莫比乌斯函数</a>
+     
+    <a href="https://ggshihaoren.github.io/tags/%E6%95%B0%E8%AE%BA%E5%88%86%E5%9D%97">数论分块</a>
+     
+    <a href="https://ggshihaoren.github.io/tags/%E7%8B%84%E5%88%A9%E5%85%8B%E9%9B%B7%E5%8D%B7%E7%A7%AF">狄利克雷卷积</a>
+     
+    <a href="https://ggshihaoren.github.io/tags/latex">Latex</a>
+    
+  </footer>
+  
+
+  
+  
+  
+  <nav class="post-nav">
+     
+    <a class="next" href="https://ggshihaoren.github.io/posts/%E5%88%9D%E5%AD%A6springboot/"><span>初学 SpringBoot</span><span>→</span></a>
+    
+  </nav>
+  
+
+  
+  
+</article>
+
+</main>
+
+    <footer class="footer">
+    <p>&copy; 2022 <a href="https://ggshihaoren.github.io/">GG&#39;s blog</a></p>
+    <p>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</p>
+    <p>
+        <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper 5.1</a>
+    </p>
+</footer>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css"
+    integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv" crossorigin="anonymous" />
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js"
+    integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O"
+    crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"
+    integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"
+    integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja"
+    crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"
+    integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR"
+    crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(document.body, {
+            
+            
+            delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '$', right: '$', display: false },
+                { left: '\\(', right: '\\)', display: false },
+                { left: '\\[', right: '\\]', display: true }
+            ],
+            
+            throwOnError: false
+        });
+    });
+</script>
+  </body>
+</html>
