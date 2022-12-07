@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>UDP on GG&#39;s blog</title>
+    <link>https://ggshihaoren.github.io/tags/udp/</link>
+    <description>Recent content in UDP on GG&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 06 Dec 2022 22:32:58 +0800</lastBuildDate><atom:link href="https://ggshihaoren.github.io/tags/udp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>自顶向下传输层学习笔记</title>
+      <link>https://ggshihaoren.github.io/posts/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Tue, 06 Dec 2022 22:32:58 +0800</pubDate>
+      
+      <guid>https://ggshihaoren.github.io/posts/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+      <description>传输层提供的服务 应用进程间的逻辑通信  传输层协议为运行在不同主机上的应用进程之间提供逻辑通信，对比网络层提供的是主机与主机之间的逻辑通信（邮局）  传输层协议  TCP：传输的分组为报文段，可靠数据传输 UDP：传输的分组为数据报，不可靠数据传输  多路复用和解复用 将运输层报文段中的数据交付到正确的套接字的工作称为多路分解，在源主机从不同套接字中收集数据块，并为每个数据块封装上首部信息从而生成报文段，将报文段传递到网络层，所有这些工作称为多路复用。
+传输层的SAP 传输层的SAP为端口，标识主机中的应用进程，类似于IP地址于网络层，MAC地址于数据链路层
+传输层多路复用要求：
+ 套接字有唯一标识符 每个报文段由16bit的特殊字节，即源端口号字段和目标端口号字段，来指示该报文段所要交付到的套接字。  无连接的多路复用与多路分解 使用
+clientSocket = socket(AF_INET, SOCK_DGRAM) 可创建一个UDP套接字，自动分配1024-65535范围内的端口号，若为周知协议则分配周知端口号
+一个UDP分组由一个二元组唯一标识，包含一个目标IP地址和一个目标端口号
+过程： 假定主机A的一个进程UDP端口为10000，它要发送一个应用进程数据块给主机B的一个，UDP端口为20000的进程，则A将创建包含源端口（用于对方返回信息）、目标端口等信息的报文段，并将该报文段传输给网络层，网络层将该报文段封装至一个IP数据报中，并尽力而为（best effort） 交付给接受主机。主机B接收到该报文段后，检查其中的目标端口，最后交付给端口号20000所标识的套接字。
+面向连接的多路复用与解复用 使用
+clientSocket = socket(AF_INET, SOCK_STREAM) clientSocket.connect((serverName,12000)) 可创建一个TCP套接字，并向12000端口等待TCP客户的welcome socket发送连接请求
+一个TCP分组由一个四元组唯一标识，包含源IP地址、目标IP地址、源端口号、目标端口号
+当运行服务器进程的主机接收到请求报文段时，它就定位该服务器进程，创建新的接收套接字
+connectSocket.addr = serverSocker.accept() 后续所有到达的报文段如果四元组都能匹配上，则都被分解到这个新建的套接字
+UDP 优点  关于发送什么数据以及何时发送的应用层控制更为精细。无拥塞处理，不用延迟报文段的传输 无须连接建立。（DNS运行在UDP而不是TCP的主要原因之一） 无连接状态。能支持更多的活跃用户。 分组首部开销小  报文段结构  源端口号 目标端口号 长度，指示首部加数据在报文段中的字节数 检验和  检验和 检验和用于确定检测UDP报文段在传输过程中有无出错。发送方对报文段中的所有16bit字的和进行相加，若有溢出则进行反卷（溢出的1移到最后加上），最后得出的和取反码，此为校验和。接收方将报文段中的数据反卷求和后再加上校验和，该和若为1111111111111111，则正确
+可靠数据传输原理 停止等待协议 1.经完全可靠信道的可靠数据传输：rdt1.0 2.经具有比特差错信道的可靠数据传输：rdt2.0 3.经具有比特差错的丢包信号的可靠数据传输：rdt3.0
+流水线可靠数据传输协议 不以停止等待的方式运行，允许发送方发送多个分组而无须等待确认，可以提高利用率。因为许多从发送方向接收方输送的分组可以看成是填充到一条流水线中，故该技术称为流水线  必须增加序号范围，每个输送的分组必须有一个唯一的序号 协议发送方与接收方不得不缓存多个分组 两种基本方法：Go-Back-N（回退N步）,Selective Repeat（选择重传）  Go-Back-N N为还未被确认的分组的许可序号范围，随着协议的进行，该窗口在序号空间内向前滑动，因此又称为滑动窗口协议。定义基序号（base）为最早未确认的分组，下一个序号（nextseqnum）定义为最小未使用序号，即可将序号范围分为4段： -[0,base-1]段内为已发送且已确认的分组 -[base,nextseqnum-1]段内为已发送但未确认分组 -[nextseqnum,base+N-1]段内为将要被立即发送的分组 -[base+N,+]段内为不可使用分组</description>
+    </item>
+    
+  </channel>
+</rss>
