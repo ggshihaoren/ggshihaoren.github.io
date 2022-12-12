@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>狄利克雷卷积 on GG&#39;s blog</title>
-    <link>https://ggshihaoren.github.io/tags/%E7%8B%84%E5%88%A9%E5%85%8B%E9%9B%B7%E5%8D%B7%E7%A7%AF/</link>
+    <link>https://blog.ggshr.me/tags/%E7%8B%84%E5%88%A9%E5%85%8B%E9%9B%B7%E5%8D%B7%E7%A7%AF/</link>
     <description>Recent content in 狄利克雷卷积 on GG&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 Jul 2022 17:09:58 +0800</lastBuildDate><atom:link href="https://ggshihaoren.github.io/tags/%E7%8B%84%E5%88%A9%E5%85%8B%E9%9B%B7%E5%8D%B7%E7%A7%AF/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 21 Jul 2022 17:09:58 +0800</lastBuildDate><atom:link href="https://blog.ggshr.me/tags/%E7%8B%84%E5%88%A9%E5%85%8B%E9%9B%B7%E5%8D%B7%E7%A7%AF/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>莫比乌斯反演</title>
-      <link>https://ggshihaoren.github.io/posts/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/</link>
+      <link>https://blog.ggshr.me/posts/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/</link>
       <pubDate>Thu, 21 Jul 2022 17:09:58 +0800</pubDate>
       
-      <guid>https://ggshihaoren.github.io/posts/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/</guid>
+      <guid>https://blog.ggshr.me/posts/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/</guid>
       <description>用途 抱着好奇的态度学习了这个数论板块中较为重要的内容。简单来说对于一些较难直接求出值的函数 $f(n)$ ,如若可以求出它的倍数的和或者约数的和 $g(n)$ ,那么我们就可以直接通过莫比乌斯反演进行运算从而求得 $f(n)$ 的值。
 前置芝士 在学习这一部分之前，首先需要学习数论分块与狄利克雷卷积的相关知识。
 一、数论分块 对于形如$\sum_{i=1}^nf(i)g(\lfloor \frac{n}{i} \rfloor)$的和式，如果我们可以做到O(1)内计算$f(r)-f(l)$时，利用数论分块就能以$O(\sqrt N)$的复杂度算出上述的式子。

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on GG&#39;s blog</title>
-    <link>https://ggshihaoren.github.io/posts/</link>
+    <link>https://blog.ggshr.me/posts/</link>
     <description>Recent content in Posts on GG&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 Jul 2022 17:09:58 +0800</lastBuildDate><atom:link href="https://ggshihaoren.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 21 Jul 2022 17:09:58 +0800</lastBuildDate><atom:link href="https://blog.ggshr.me/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>莫比乌斯反演</title>
-      <link>https://ggshihaoren.github.io/posts/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/</link>
+      <link>https://blog.ggshr.me/posts/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/</link>
       <pubDate>Thu, 21 Jul 2022 17:09:58 +0800</pubDate>
       
-      <guid>https://ggshihaoren.github.io/posts/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/</guid>
+      <guid>https://blog.ggshr.me/posts/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/</guid>
       <description>用途 抱着好奇的态度学习了这个数论板块中较为重要的内容。简单来说对于一些较难直接求出值的函数 $f(n)$ ,如若可以求出它的倍数的和或者约数的和 $g(n)$ ,那么我们就可以直接通过莫比乌斯反演进行运算从而求得 $f(n)$ 的值。
 前置芝士 在学习这一部分之前，首先需要学习数论分块与狄利克雷卷积的相关知识。
 一、数论分块 对于形如$\sum_{i=1}^nf(i)g(\lfloor \frac{n}{i} \rfloor)$的和式，如果我们可以做到O(1)内计算$f(r)-f(l)$时，利用数论分块就能以$O(\sqrt N)$的复杂度算出上述的式子。
@@ -25,10 +25,10 @@ int l=1,r; int sum=0; while(l&amp;lt;=n){ r=(n/(n/l)); //由结论可得的r的�
     
     <item>
       <title>初学 SpringBoot</title>
-      <link>https://ggshihaoren.github.io/posts/%E5%88%9D%E5%AD%A6springboot/</link>
+      <link>https://blog.ggshr.me/posts/%E5%88%9D%E5%AD%A6springboot/</link>
       <pubDate>Thu, 05 May 2022 14:51:48 +0800</pubDate>
       
-      <guid>https://ggshihaoren.github.io/posts/%E5%88%9D%E5%AD%A6springboot/</guid>
+      <guid>https://blog.ggshr.me/posts/%E5%88%9D%E5%AD%A6springboot/</guid>
       <description>从后端零基础开始 由于本学期 J2EE 课程作业需要，我们小组需要前后端分离去学习不同的东西。前端关于 HTML,CSS,JSP 的内容已经有些许了解了，但是后端部分的知识却是一点都不知道。出于想学习新东西的心态，我便选择开始学习后端部分的知识。
 可能是觉得老师教的东西有些许过时了，我们的组长便决定不完全按照老师所教的东西来，而是选择了 SpringBoot 和 MyBatis 作为我们的后端选型，数据库也不是 MYSQL，而是 MariaDB （我们组长到底是怎么知道这么多东西的真的好厉害必须狠狠夸一波）。
 于是便有了后面一些关于 SpringBoot 的简单学习。
@@ -41,10 +41,10 @@ package com.example.demo; import org.springframework.boot.SpringApplication; imp
     
     <item>
       <title>Hello World!</title>
-      <link>https://ggshihaoren.github.io/posts/helloworld/</link>
+      <link>https://blog.ggshr.me/posts/helloworld/</link>
       <pubDate>Thu, 28 Apr 2022 20:02:25 +0800</pubDate>
       
-      <guid>https://ggshihaoren.github.io/posts/helloworld/</guid>
+      <guid>https://blog.ggshr.me/posts/helloworld/</guid>
       <description>Welcome To My First Page 作为自己的第一篇博客，纵有千言万语想要表述，但是却受限于自己的语言功底而半天敲不出什么话&amp;hellip;
 那就如同最开始接触代码一样，从 Hello World开始吧！
 以后会经常更新一些新学的有趣的知识，感兴趣的小伙伴可以一起互相学习^-^</description>

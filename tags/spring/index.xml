@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Spring on GG&#39;s blog</title>
-    <link>https://ggshihaoren.github.io/tags/spring/</link>
+    <link>https://blog.ggshr.me/tags/spring/</link>
     <description>Recent content in Spring on GG&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 05 May 2022 14:51:48 +0800</lastBuildDate><atom:link href="https://ggshihaoren.github.io/tags/spring/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 May 2022 14:51:48 +0800</lastBuildDate><atom:link href="https://blog.ggshr.me/tags/spring/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>初学 SpringBoot</title>
-      <link>https://ggshihaoren.github.io/posts/%E5%88%9D%E5%AD%A6springboot/</link>
+      <link>https://blog.ggshr.me/posts/%E5%88%9D%E5%AD%A6springboot/</link>
       <pubDate>Thu, 05 May 2022 14:51:48 +0800</pubDate>
       
-      <guid>https://ggshihaoren.github.io/posts/%E5%88%9D%E5%AD%A6springboot/</guid>
+      <guid>https://blog.ggshr.me/posts/%E5%88%9D%E5%AD%A6springboot/</guid>
       <description>从后端零基础开始 由于本学期 J2EE 课程作业需要，我们小组需要前后端分离去学习不同的东西。前端关于 HTML,CSS,JSP 的内容已经有些许了解了，但是后端部分的知识却是一点都不知道。出于想学习新东西的心态，我便选择开始学习后端部分的知识。
 可能是觉得老师教的东西有些许过时了，我们的组长便决定不完全按照老师所教的东西来，而是选择了 SpringBoot 和 MyBatis 作为我们的后端选型，数据库也不是 MYSQL，而是 MariaDB （我们组长到底是怎么知道这么多东西的真的好厉害必须狠狠夸一波）。
 于是便有了后面一些关于 SpringBoot 的简单学习。
