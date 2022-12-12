@@ -1,4 +1,4 @@
-baseURL = 'https://ggshihaoren.github.io/'
+baseURL = 'https://blog.ggshr.me/'
 languageCode = 'en-us'
 title = "GG's blog"
 theme = 'paper'
